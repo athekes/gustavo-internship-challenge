@@ -1,7 +1,23 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+Batch.create(
+  reference: '123',
+  purchase_channel: 'Site-BR',
+)
+
+Order.create(
+  reference: 'BR102030',
+  purchase_channel: 'Site BR',
+  client_name: 'Rogerio Lima',
+  address: 'Rua Padre Valdevino, 2475 - Aldeota, Fortaleza - CE, 60135-041',
+  delivery_service: 'SEDEX',
+  line_items: [
+    { sku: 'case-my-best-friend', model: 'iPhone X', case_type: 'Rose Leather' },
+    { sku: 'powebank-sunshine', capacity: '10000mah' },
+    { sku: 'earphone-standard', color: 'white' }
+  ],
+  total_value: 1000,
+  status: 'ready',
+  batch: Batch.last
+)
+
+p '###### Seed realizada com sucesso ######'
