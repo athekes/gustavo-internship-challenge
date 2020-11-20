@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_11_18_184953) do
     t.string "delivery_service"
     t.text "line_items"
     t.integer "status"
-    t.bigint "batch_id", null: false
+    t.bigint "batch_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "total_value_cents", default: 0, null: false

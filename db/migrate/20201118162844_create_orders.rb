@@ -8,7 +8,7 @@ class CreateOrders < ActiveRecord::Migration[6.0]
       t.string :delivery_service
       t.text :line_items
       t.integer :status
-      t.references :batch, null: false, foreign_key: true
+      t.references :batch, null: true, foreign_key: true
 
       t.timestamps
     end

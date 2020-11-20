@@ -1,7 +1,8 @@
 class Order < ApplicationRecord
-  belongs_to :batch
+  belongs_to :batch, optional: true
+  validates :reference, presence: true, uniqueness: { case_sensitive: false }
 
-  validates :reference, :purchase_channel, :client_name, :address,
+  validates :purchase_channel, :client_name, :address,
             :delivery_service, :line_items, :status, presence: true
 
   monetize :total_value_cents,
