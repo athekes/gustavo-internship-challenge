@@ -13,6 +13,9 @@ gem 'puma', '~> 4.1'
 gem 'money-rails', '~>1.12'
 # A fast JSON:API serializer for Ruby Objects.
 gem 'jsonapi-serializer'
+
+gem 'rubocop-rails', require: false
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production

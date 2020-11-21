@@ -2,15 +2,18 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
-      post '/orders', to: 'orders#create'
-      get '/orders', to: 'orders#orders_by_purchase_channel'
-      get '/orders/status', to: 'orders#status'
+      resources :batches, only: %i[show create], param: :reference
+      namespace :batches do
+        resources :productions, only: :update, param: :reference
+        resources :closings, only: :update, param: :reference
+        resources :shipments, only: :update, param: :reference
+      end
 
-      post '/batches', to: 'batches#create'
-      get '/batches', to: 'batches#show'
-      put '/batches/produce', to: 'batches#produce'
-      put '/batches/closing', to: 'batches#closing'
-      put '/batches/sent', to: 'batches#sent'
+      resources :orders, only: :create
+      namespace :orders do
+        get 'purchase_channel', to: 'purchase_channel_views#index'
+        get 'status', to: 'status_views#show'
+      end
     end
   end
 end

@@ -1,36 +1,4 @@
 class Api::V1::OrdersController < ApplicationController
-
-  def status
-    reference = params[:reference]
-    client_name = params[:client_name]
-
-    if !reference.nil?
-      @orders = Order.where(reference: reference)
-    elsif !client_name.nil?
-      @orders = Order.where(client_name: client_name)
-    end
-
-    response_orders = []
-    @orders.each do |order|
-      response_orders << { reference: order.reference, status: order.status }
-    end
-
-    render json: response_orders, status: :ok
-  end
-
-  def orders_by_purchase_channel
-    purchase_channel = params[:purchase_channel]
-    status = params[:status]
-
-    @orders = if status.nil?
-                Order.where(purchase_channel: purchase_channel)
-              else
-                Order.where(purchase_channel: purchase_channel).where(status: status)
-              end
-
-    render json: OrderSerializer.new(@orders).serializable_hash.to_json, status: :ok
-  end
-
   def create
     @order = Order.new(order_params)
 
