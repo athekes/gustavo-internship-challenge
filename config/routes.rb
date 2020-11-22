@@ -11,8 +11,8 @@ Rails.application.routes.draw do
 
       resources :orders, only: :create
       namespace :orders do
-        get 'purchase_channel', to: 'purchase_channel_views#index'
-        get 'status', to: 'status_views#show'
+        get 'purchase_channel', to: 'purchase_channel_orders#index'
+        get 'status', to: 'orders_with_status#show'
       end
     end
   end
