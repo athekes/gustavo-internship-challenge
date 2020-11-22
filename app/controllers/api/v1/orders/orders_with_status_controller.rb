@@ -3,9 +3,10 @@ class Api::V1::Orders::OrdersWithStatusController < ApplicationController
     reference = params[:reference]
     client_name = params[:client_name]
 
-    @orders = get_orders(reference, client_name)
+    orders = get_orders(reference, client_name)
+    raise ActiveRecord::RecordNotFound if orders.nil? || orders.empty?
 
-    render json: hash_orders_status(@orders), status: :ok
+    render json: hash_orders_status(orders), status: :ok
   rescue ActiveRecord::RecordNotFound
     head 404
   end

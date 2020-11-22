@@ -3,9 +3,10 @@ class Api::V1::Orders::PurchaseChannelOrdersController < ApplicationController
     purchase_channel = params[:purchase_channel]
     status = params[:status]
 
-    @orders = get_orders(purchase_channel, status)
+    orders = get_orders(purchase_channel, status)
+    raise ActiveRecord::RecordNotFound if orders.nil? || orders.empty?
 
-    render json: OrderSerializer.new(@orders).serializable_hash.to_json, status: :ok
+    render json: OrderSerializer.new(orders).serializable_hash.to_json, status: :ok
   rescue ActiveRecord::RecordNotFound
     head 404
   end
