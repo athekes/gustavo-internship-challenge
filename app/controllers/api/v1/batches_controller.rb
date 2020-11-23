@@ -26,6 +26,6 @@ class Api::V1::BatchesController < ApplicationController
   private
 
   def batch_params
-    params.require(:batch).permit(:purchase_channel)
+    params.permit(:purchase_channel)
   end
 end

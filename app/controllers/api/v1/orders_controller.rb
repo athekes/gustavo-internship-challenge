@@ -12,13 +12,14 @@ class Api::V1::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(
+    params.permit(
       :reference,
       :purchase_channel,
       :client_name,
       :address,
       :delivery_service,
       :status,
+      :total_value_cents,
       line_items: %i[sku model case_type color]
     )
   end
