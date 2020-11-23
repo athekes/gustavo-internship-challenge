@@ -1,8 +1,9 @@
 class Api::V1::Orders::PurchaseChannelOrdersController < ApplicationController
   def index
-    purchase_channel = params[:purchase_channel]
-    status = params[:status]
-
+    if params[:orders]
+      purchase_channel = params[:orders][:purchase_channel]
+      status = params[:orders][:status]
+    end
     orders = get_orders(purchase_channel, status)
     raise ActiveRecord::RecordNotFound if orders.nil? || orders.empty?
 

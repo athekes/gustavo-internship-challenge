@@ -5,7 +5,7 @@ RSpec.describe 'Orders purchase_channel', type: :request do
         purchase_channel = 'Site A'
         create_list(:order, 5, purchase_channel: purchase_channel)
 
-        get api_v1_orders_purchase_channel_path, params: { purchase_channel: purchase_channel }
+        get api_v1_orders_purchase_channel_path, params: { orders: { purchase_channel: purchase_channel } }
 
         json_response = JSON.parse(response.body)
         expect(json_response['data'].count).to be(5)
@@ -25,7 +25,7 @@ RSpec.describe 'Orders purchase_channel', type: :request do
         create_list(:order, 3, purchase_channel: purchase_channel, status: 'ready')
         create_list(:order, 2, purchase_channel: purchase_channel, status: status)
 
-        get api_v1_orders_purchase_channel_path, params: { purchase_channel: purchase_channel, status: status }
+        get api_v1_orders_purchase_channel_path, params: { orders: { purchase_channel: purchase_channel, status: status } }
 
         json_response = JSON.parse(response.body)
         expect(json_response['data'].count).to be(2)
