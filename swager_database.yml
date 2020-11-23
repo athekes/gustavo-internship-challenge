@@ -1,0 +1,289 @@
+swagger: '2.0'
+info:
+  version: 'v1'
+  title: 'gustavo-internship-challenge'
+  description: 'documentação do desafio de estágio gocase feito por gustavo castro'
+paths: 
+  /orders:
+    post:
+      description: Create a new purchase order
+      parameters:
+        - name: orders
+          in: body
+          description: Creates a new purchase order
+          schema:
+            type: object 
+            properties:
+              order:
+                type: object
+                properties:
+                  reference: 
+                    type: string
+                  purchase_channel: 
+                    type: string
+                  client_name: 
+                    type: string
+                  address: 
+                    type: string
+                  delivery_service: 
+                    type: string
+                  total_value_cents:
+                    type: integer
+                  line_items: 
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sku: 
+                          type: string
+                        model: 
+                          type: string
+                        case_type: 
+                          type: string
+      responses:
+        201:
+          description: Sucesfully created a order
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+              attributes: 
+                type: object
+                properties:
+                  reference: 
+                    type: string
+                  purchase_channel: 
+                    type: string
+                  client_name: 
+                    type: string
+                  address: 
+                    type: string
+                  delivery_service: 
+                    type: string
+                  line_items: 
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sku: 
+                          type: string
+                        model: 
+                          type: string
+                        case_type: 
+                          type: string
+              total_value_cents:
+                type: integer
+              status: 
+                type: string
+              relationships:
+                type: object
+                properties:
+                  batch:
+                    type: object
+                    properties:
+                      data:
+                       type: string
+  /orders/status:
+     get:
+      description: Return a status of a determinate orders (if the reference parameter is passed as in the example, a single order will always be returned)
+      parameters:
+        - name: orders
+          in: body
+          description: Creates a new purchase order
+          schema:
+            type: object 
+            properties:
+              orders:
+                type: object
+                properties:
+                  client_name: 
+                    type: string
+                  reference: 
+                    type: string
+      responses:
+        200:
+          description: Sucesfully found orders
+          schema:
+            type: object
+            properties:
+               orders: 
+                type: array
+                items:
+                  type: object
+                  properties:
+                    reference:
+                      type: string
+                    status:
+                      type: string
+  /orders/purchase_channel:
+    get:
+      description: Return orders for a specific purchase channel( if status params is passed as in the example, only onders with that status will show)
+      parameters:
+        - name: orders
+          in: body
+          description: Creates a new purchase order
+          schema:
+            type: object 
+            properties:
+              orders:
+                type: object
+                properties:
+                  purchase_channel: 
+                    type: string
+                  status: 
+                    type: string
+      responses:
+        201:
+          description: Sucesfully found orders
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    type:
+                      type: string
+                    attributes: 
+                      type: object
+                      properties:
+                        reference: 
+                          type: string
+                        purchase_channel: 
+                          type: string
+                        client_name: 
+                          type: string
+                        address: 
+                          type: string
+                        delivery_service: 
+                          type: string
+                        line_items: 
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              sku: 
+                                type: string
+                              model: 
+                                type: string
+                              case_type: 
+                                type: string
+                    total_value_cents:
+                      type: integer
+                    status: 
+                      type: string
+                    relationships:
+                      type: object
+                      properties:
+                        batch:
+                          type: object
+                          properties:
+                            data:
+                              type: string
+  /batches:
+    post:
+      description: Create a new batch
+      parameters: 
+        - name: batch
+          in: body
+          description: Creates a new batch
+          schema:
+            type: object
+            properties:
+              batch:
+                type: object
+                properties:
+                  purchase_channel: 
+                    type: string
+      responses:
+        201:
+          description: Sucesfully created a batch
+          schema:
+            type: object
+            properties:
+              reference: 
+                type: string
+              order_count:
+                type: integer
+  /batches/productions:
+    put:
+      description: Puts the status of all orders in a batch into production
+      parameters:
+        - name: reference
+          type: string
+          in: query
+          description: Reference a batch
+      responses:
+        200:
+          description: Sucesfully moved a batch
+          schema:
+            type: object
+            properties:
+              reference: 
+                type: string
+              status:
+                type: integer
+  /batches/closings:
+    put:
+      description: Puts the status of all orders in a batch into closing
+      parameters:
+        - name: reference
+          type: string
+          in: query
+          description: Reference a batch
+      responses:
+        200:
+          description: Sucesfully moved a batch
+          schema:
+            type: object
+            properties:
+              reference: 
+                type: string
+              status:
+                type: integer
+  /batches/shipments:
+    put:
+      description: Puts the status of orders whit the correct delivery_service in a batch into sent
+      parameters:
+        - name: reference
+          type: string
+          in: query
+          description: Reference a batch
+        - name: options
+          in: body
+          description: Options for sent a batch
+          schema:
+            type: object
+            properties:
+              options:
+                type: object
+                properties:
+                  delivery_service: 
+                    type: string
+      responses:
+        200:
+          description: Sucesfully moved a batch
+          schema:
+            type: object
+            properties:
+              reference: 
+                type: string
+              delivery_service:
+                type: integer
+              status: 
+                type: string
+              order_count: 
+                type: integer
+
+
+# Added by API Auto Mocking Plugin
+host: gustavo-internship-challenge.herokuapp.com
+basePath: /api/v1
+schemes:
+ - https
