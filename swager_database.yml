@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   version: 'v1'
   title: 'gustavo-internship-challenge'
-  description: 'documentação do desafio de estágio gocase feito por gustavo castro'
+  description: 'Documentation of the gocase internship challenge made by gustavo castro'
 paths: 
   /orders:
     post:
