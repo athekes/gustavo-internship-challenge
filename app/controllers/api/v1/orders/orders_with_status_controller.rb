@@ -25,7 +25,7 @@ class Api::V1::Orders::OrdersWithStatusController < ApplicationController
     if reference
       Order.where(reference: reference)
     elsif client_name
-      Order.where(client_name: client_name)
+      Order.where(client_name: client_name).reverse_order.limit(10)
     end
   end
 end

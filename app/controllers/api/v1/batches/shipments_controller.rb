@@ -11,7 +11,13 @@ class Api::V1::Batches::ShipmentsController < ApplicationController
 
     orders.update_all(status: 'sent')
 
-    render json: { reference: batch.reference, status: 'sent', delivery_service: delivery_service }, status: :ok
+    render json: {
+      reference: batch.reference,
+      delivery_service: delivery_service,
+      status: 'sent',
+      orders_count: orders.count
+    }, status: :ok
+
   rescue ActiveRecord::RecordNotFound
     head 404
   end
