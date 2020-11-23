@@ -15,12 +15,12 @@ gem 'money-rails', '~>1.12'
 gem 'jsonapi-serializer'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+gem 'rack-cors'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
 gem 'simplecov', require: false, group: :test
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
