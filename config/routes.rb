@@ -9,10 +9,12 @@ Rails.application.routes.draw do
         resources :shipments, only: :update, param: :reference
       end
 
+      get 'orders/show/:reference', to: 'orders#show'
+
       resources :orders, only: :create
       namespace :orders do
-        get 'purchase_channel', to: 'purchase_channel_orders#index'
-        get 'status', to: 'orders_with_status#show'
+        get '/status', to: 'orders_with_status#show'
+        get '/purchase_channel', to: 'purchase_channel_orders#index'
       end
     end
   end
