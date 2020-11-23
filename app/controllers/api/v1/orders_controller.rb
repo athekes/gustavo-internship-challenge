@@ -12,7 +12,7 @@ class Api::V1::OrdersController < ApplicationController
   private
 
   def order_params
-    params.permit(
+    params.require(:order).permit(
       :reference,
       :purchase_channel,
       :client_name,

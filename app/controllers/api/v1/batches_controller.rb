@@ -8,7 +8,9 @@ class Api::V1::BatchesController < ApplicationController
   end
 
   def create
-    orders_for_batch = Order.where(purchase_channel: params[:purchase_channel], batch: nil)
+    purchase_channel = params[:batch][:purchase_channel]
+
+    orders_for_batch = Order.where(purchase_channel: purchase_channel, batch: nil)
     raise ActiveRecord::RecordNotFound if orders_for_batch.nil? || orders_for_batch.empty?
 
     batch = Batch.new(batch_params)
@@ -26,6 +28,6 @@ class Api::V1::BatchesController < ApplicationController
   private
 
   def batch_params
-    params.permit(:purchase_channel)
+    params.require(:batch).permit(:purchase_channel)
   end
 end
