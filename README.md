@@ -16,6 +16,9 @@
     -    shoulda-matchers
 
 ## How run the app
+Just clone the repository and with rails 6 and ruby in version 2.7.1 run:
+`bundle install`, 
+`rails db:create db:migrate`
 ## Link to Access
 To facilitate the assessment of the challenge I uploaded the api on heroku, it can be accessed through the following link
 
