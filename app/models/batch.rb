@@ -7,6 +7,6 @@ class Batch < ApplicationRecord
   before_validation :set_reference, on: :create
 
   def set_reference
-    self.reference ||= "BT-#{rand(100)}"
+    self.reference ||= "BT-#{Digest::SHA1.hexdigest([Time.now, rand].join)}"
   end
 end
