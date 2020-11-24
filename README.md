@@ -24,7 +24,7 @@ To facilitate the assessment of the challenge I uploaded the api on heroku, it c
 <https://gustavo-internship-challenge.herokuapp.com/api/v1> - *Use as base url for the requests*
 ## Endpoint Documentation
 In order to improve the understanding of how the api and its end points work I made a documentation using swagger that can be accessed by the following link
-<https://app.swaggerhub.com/apis/go-case-internship/gustavo-internship-challenge/1>
+<https://app.swaggerhub.com/apis/go-case-internship/gustavo-internship-challenge/v1>
 ## How i structure my API:
   - I tried to use a full RESET pattern on my controllers. It means that i always created a new controller when i found an action with it cannot be described by the REST methods. I tried this to achieve a scalable standard for the entire controllers structure
   - For the format of the resquests, I chose that, whenever a parameter other than reference for a record is needed, this parameter must be sent in the request body in json format.
