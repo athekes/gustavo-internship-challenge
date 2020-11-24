@@ -10,5 +10,11 @@ RSpec.describe 'Closings', type: :request do
       json_response = JSON.parse(response.body)
       expect(json_response['status']).to eq('closing')
     end
+    it 'if not found, return 404' do
+      reference = 'anything'
+      put api_v1_batches_closing_path(reference)
+
+      expect(response).to have_http_status(:not_found)
+    end
   end
 end

@@ -13,7 +13,7 @@ RSpec.describe 'Orders purchase_channel', type: :request do
       it 'if not found, return 404' do
         purchase_channel = 'Site A'
 
-        get api_v1_orders_purchase_channel_path, params: { purchase_channel: purchase_channel }
+        get api_v1_orders_purchase_channel_path, params: { orders: { purchase_channel: purchase_channel } }
 
         expect(response).to have_http_status(:not_found)
       end
@@ -35,7 +35,7 @@ RSpec.describe 'Orders purchase_channel', type: :request do
         status = 'production'
         create_list(:order, 5, purchase_channel: purchase_channel, status: 'ready')
 
-        get api_v1_orders_purchase_channel_path, params: { purchase_channel: purchase_channel, status: status }
+        get api_v1_orders_purchase_channel_path, params: { orders: { purchase_channel: purchase_channel, status: status } }
         expect(response).to have_http_status(:not_found)
       end
     end

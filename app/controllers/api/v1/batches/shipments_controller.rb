@@ -1,15 +1,15 @@
 class Api::V1::Batches::ShipmentsController < ApplicationController
   def update
     reference = params[:reference]
-    delivery_service = params[:options][:delivery_service] if params[:options]
+    delivery_service = shipments_params[:delivery_service]
 
-    batch = Batch.joins(:orders).find_by(reference: reference)
+    batch = Batch.find_by(reference: reference)
     raise ActiveRecord::RecordNotFound if batch.nil?
 
     orders = batch.orders.where(delivery_service: delivery_service)
-    raise ActiveRecord::RecordNotFound if orders.nil? || orders.empty?
+    raise ActiveRecord::RecordNotFound if orders.empty?
 
-    orders.update_all(status: 'sent')
+    orders.update(status: 'sent')
 
     render json: {
       reference: batch.reference,
@@ -17,8 +17,13 @@ class Api::V1::Batches::ShipmentsController < ApplicationController
       status: 'sent',
       orders_count: orders.count
     }, status: :ok
-
   rescue ActiveRecord::RecordNotFound
-    head 404
+    render json: { error: "Can't find avaliable batch or orders for a batch" }, status: :not_found
+  end
+
+  private
+
+  def shipments_params
+    params.require(:options).permit(:delivery_service)
   end
 end

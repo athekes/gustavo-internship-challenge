@@ -13,7 +13,7 @@ RSpec.describe 'Orders status', type: :request do
       it 'if not found, return 404' do
         reference = 'OD-1'
 
-        get api_v1_orders_status_path, params: { reference: reference}
+        get api_v1_orders_status_path, params: { orders: { reference: reference } }
 
         expect(response).to have_http_status(:not_found)
       end
@@ -33,7 +33,7 @@ RSpec.describe 'Orders status', type: :request do
       it 'if not found, return 404' do
         client_name = "jhon"
 
-        get api_v1_orders_status_path, params: { client_name: client_name}
+        get api_v1_orders_status_path, params: { orders: { client_name: client_name } }
 
         expect(response).to have_http_status(:not_found)
       end

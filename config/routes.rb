@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
-      resources :batches, only: %i[show create], param: :reference
+      resources :batches, only: %i[index show create], param: :reference
       namespace :batches do
         resources :productions, only: :update, param: :reference
         resources :closings, only: :update, param: :reference

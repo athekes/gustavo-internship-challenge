@@ -29,7 +29,7 @@ group :development, :test do
   gem 'faker'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.5'
-
+  
 end
 
 group :test do

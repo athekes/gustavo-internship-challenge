@@ -46,7 +46,7 @@ RSpec.describe 'Shipments', type: :request do
           create_list(:order, 2, batch: batch, delivery_service: delivery_service)
         end
 
-        put api_v1_batches_shipment_path(batch.reference), params: { arbitrary_param: 'anything' }
+        put api_v1_batches_shipment_path(batch.reference), params: { options: { arbitrary_param: 'anything' } }
         expect(response).to have_http_status(:not_found)
       end
     end
