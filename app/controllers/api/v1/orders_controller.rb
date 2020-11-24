@@ -1,13 +1,11 @@
 class Api::V1::OrdersController < ApplicationController
   def show
     reference = params[:reference]
-
-    order = Order.find_by(reference: reference)
-    raise ActiveRecord::RecordNotFound if order.nil? 
+    order = find_order(reference)
 
     render json: OrderSerializer.new(order).serializable_hash.to_json, status: :ok
   rescue ActiveRecord::RecordNotFound
-    head 404
+    render json: { error: "Can't find avaliable order" }, status: :not_found
   end
 
   def create
@@ -33,5 +31,12 @@ class Api::V1::OrdersController < ApplicationController
       :total_value_cents,
       line_items: %i[sku model case_type color]
     )
+  end
+
+  def find_order(reference)
+    order = Order.find_by(reference: reference)
+    raise ActiveRecord::RecordNotFound if order.nil?
+
+    order
   end
 end

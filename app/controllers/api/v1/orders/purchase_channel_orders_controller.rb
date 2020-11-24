@@ -4,8 +4,6 @@ class Api::V1::Orders::PurchaseChannelOrdersController < ApplicationController
     status = purchase_channel_orders_params[:status]
 
     orders = get_purchase_channel_orders(purchase_channel, status)
-    raise ActiveRecord::RecordNotFound if orders.nil? || orders.empty?
-
     render json: OrderSerializer.new(orders).serializable_hash.to_json, status: :ok
   rescue ActiveRecord::RecordNotFound
     render json: { error: "Can't find avaliable orders" }, status: :not_found
@@ -19,9 +17,12 @@ class Api::V1::Orders::PurchaseChannelOrdersController < ApplicationController
 
   def get_purchase_channel_orders(purchase_channel, status)
     if purchase_channel && status
-      Order.where(purchase_channel: purchase_channel, status: status)
+      orders = Order.where(purchase_channel: purchase_channel, status: status)
     elsif purchase_channel
-      Order.where(purchase_channel: purchase_channel)
+      orders = Order.where(purchase_channel: purchase_channel)
     end
+    raise ActiveRecord::RecordNotFound if orders.empty?
+
+    orders
   end
 end
