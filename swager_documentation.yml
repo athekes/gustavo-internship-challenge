@@ -42,7 +42,7 @@ paths:
                           type: string
       responses:
         201:
-          description: Sucesfully created a order
+          description: Successfully created a order
           schema:
             type: object
             properties:
@@ -88,11 +88,11 @@ paths:
                        type: string
   /orders/status:
      get:
-      description: Return a status of a determinate orders (if the reference parameter is passed as in the example, a single order will always be returned)
+      description: Return the status of a determined orders (if the reference parameter is passed as in the example, a single order will always be returned)
       parameters:
         - name: orders
           in: body
-          description: Creates a new purchase order
+          description: Defines which orders you want the status
           schema:
             type: object 
             properties:
@@ -105,7 +105,7 @@ paths:
                     type: string
       responses:
         200:
-          description: Sucesfully found orders
+          description: Successfully found orders
           schema:
             type: object
             properties:
@@ -120,11 +120,11 @@ paths:
                       type: string
   /orders/purchase_channel:
     get:
-      description: Return orders for a specific purchase channel( if status params is passed as in the example, only onders with that status will show)
+      description: Return the orders for a specific purchase channel( if status params is passed as in the example, only onders with that status will show)
       parameters:
         - name: orders
           in: body
-          description: Creates a new purchase order
+          description: Defines which orders you want to consult
           schema:
             type: object 
             properties:
@@ -137,7 +137,7 @@ paths:
                     type: string
       responses:
         201:
-          description: Sucesfully found orders
+          description: Successfully found orders
           schema:
             type: object
             properties:
@@ -203,7 +203,7 @@ paths:
                     type: string
       responses:
         201:
-          description: Sucesfully created a batch
+          description: Successfully created a batch
           schema:
             type: object
             properties:
