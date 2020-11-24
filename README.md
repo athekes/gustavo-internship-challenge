@@ -21,7 +21,7 @@ Just clone the repository and with rails 6 and ruby in version 2.7.1 run:
 ## Link to Access
 To facilitate the assessment of the challenge I uploaded the api on heroku, it can be accessed through the following link
 
-<https://gustavo-internship-challenge.herokuapp.com> - *Use as base url for the requests*
+<https://gustavo-internship-challenge.herokuapp.com/api/v1> - *Use as base url for the requests*
 ## Endpoint Documentation
 In order to improve the understanding of how the api and its end points work I made a documentation using swagger that can be accessed by the following link
 <https://app.swaggerhub.com/apis/go-case-internship/gustavo-internship-challenge/1>
