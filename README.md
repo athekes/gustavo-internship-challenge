@@ -40,6 +40,6 @@ the import file is in `public/gustavo-internshp-challenge-insommia.json`.
 Use  `bundle exec rspec` to run the tests
 
 ## Where i think i need to improve
-- I believe the main point is the elegance of my code. I think there are a lot of conditional deviations, especially when I try to deal with exceptions or have to deal with similar code that is repeated in different files, causing a little "polluted" code. I believe that a fundamental point is to learn better to manipulate, via object-oriented techniques, classes and rails structures, besides obviously developing even more knowledge about ruby and rails tools. I also believe that I should improve the standards used in the responses and the request.
+- I believe the main point is the elegance of my code. I think there are a lot of conditional deviations and repetitions, especially when I try to deal with exceptions or have to deal with similar code that is repeated in different files, causing a little "polluted" code. I believe that a fundamental point is to learn better to manipulate, via object-oriented techniques, classes and rails structures, besides obviously developing even more knowledge about ruby and rails tools. I also believe that I should improve the standards used in the responses and the request.
 
 I'm really looking for that knowledge and I improved a lot during the challenge, but I hope that the experience at Go Case can help me to improve in these matters.
